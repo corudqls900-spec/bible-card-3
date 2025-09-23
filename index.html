@@ -13,6 +13,35 @@
       height: 100vh;
       margin: 0;
       background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      font-family: "Times New Roman","명조체", serif;
+    }
+
+    /* 처음 나오는 질문 화면 */
+    #intro {
+      text-align: center;
+    }
+    #intro p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #intro button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      background-color: #4a90e2;
+      color: white;
+      cursor: pointer;
+    }
+    #intro button:hover {
+      background-color: #357abd;
+    }
+
+    /* 카드 */
+    #card-container {
+      display: none; /* 처음에는 숨김 */
     }
 
     .card {
@@ -45,8 +74,8 @@
       background-size: cover;
       background-position: center;
       display: flex; 
-      align-items: center;   /* 세로 중앙 정렬 */
-      justify-content: center; /* 가로 중앙 정렬 */
+      align-items: center; 
+      justify-content: center; 
       text-align: center;
       padding: 10px;
     }
@@ -64,19 +93,18 @@
 
     /* 글자 스타일 */
     .card-text {
-      font-family: "Times New Roman","명조체", serif; /* 명조체 */
+      font-family: "Times New Roman","명조체", serif;
       font-size: 15px;
-      color: #333; /* 덜 쨍한 진회색 */
-      background: rgba(255, 255, 255, 0.6); /* 좀 더 투명한 배경 */
+      color: #333;
+      background: rgba(255, 255, 255, 0.6);
       padding: 6px 10px;
       border-radius: 8px;
       line-height: 1.6;
-      max-width: 90%; /* 너무 넓어지지 않게 */
+      max-width: 90%;
     }
     .card-front .bold-front {
-  font-weight: bold; /* 앞면 전용 굵게 */
-}
-    /* 뒷면 텍스트 배경 없애기 */
+      font-weight: bold;
+    }
     .card-back .card-text {
       background: none;
       padding: 0;
@@ -85,39 +113,55 @@
 </head>
 <body>
 
-  <div class="card" id="card">
-    <div class="card-inner">
-      <!-- 앞면 -->
-      <div class="card-face card-front">
-        <div class="card-text">
-          <span class="bpld-front">영접하는 자 곧</span><br>
-          그 이름을 믿는 자들에게는<br>
-          하나님의 자녀가 되는<br>
-          권세를 주셨으니<br><br>
-          (요 1:12)
-        </div>
-      </div>
+  <!-- 처음 질문 화면 -->
+  <div id="intro">
+    <p>1, 2층에 있는 말씀 구절들을 다 확인하셨나요?</p>
+    <button onclick="showCard()">네, 확인했습니다</button>
+  </div>
 
-      <!-- 뒷면 -->
-      <div class="card-face card-back">
-        <div class="card-text">
-          여정을 이어가는 동안<br>
-          어떤 시련이 다가와도,<br>
-          당신은 하나님의 자녀이기에<br>
-          끝까지 하나님께서<br>
-          붙드십니다.<br><br>
-          믿음 안에서 굳건히 서고,<br>
-          하나님께서 주신 권세를 따라<br>
-          담대히 나아가세요.<br><br>
-          다음 장소의 힌트는<br>
-          주임교수님 연구실 앞에서<br>
-          찾아보세요.<br>
+  <!-- 카드 화면 -->
+  <div id="card-container">
+    <div class="card" id="card">
+      <div class="card-inner">
+        <!-- 앞면 -->
+        <div class="card-face card-front">
+          <div class="card-text">
+            <span class="bold-front">영접하는 자 곧</span><br>
+            그 이름을 믿는 자들에게는<br>
+            하나님의 자녀가 되는<br>
+            권세를 주셨으니<br><br>
+            (요 1:12)
+          </div>
+        </div>
+
+        <!-- 뒷면 -->
+        <div class="card-face card-back">
+          <div class="card-text">
+            여정을 이어가는 동안<br>
+            어떤 시련이 다가와도,<br>
+            당신은 하나님의 자녀이기에<br>
+            끝까지 하나님께서<br>
+            붙드십니다.<br><br>
+            믿음 안에서 굳건히 서고,<br>
+            하나님께서 주신 권세를 따라<br>
+            담대히 나아가세요.<br><br>
+            다음 장소의 힌트는<br>
+            주임교수님 연구실 앞에서<br>
+            찾아보세요.<br>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
+    // 질문 화면에서 카드 화면으로 전환
+    function showCard() {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('card-container').style.display = 'block';
+    }
+
+    // 카드 클릭 시 회전
     const card = document.getElementById('card');
     card.addEventListener('click', () => card.classList.toggle('flipped'));
   </script>
